@@ -1,0 +1,3009 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark aura-on">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HASAN MAHMUD FAHIM | Photographer · Filmmaker · Visual Storyteller — Dhaka</title>
+
+  <!-- Google Fonts: Inter & Cormorant Garamond -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#09090b',
+            charcoal: '#111115',
+            slateSurface: '#18181f',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg-base: #09090b;
+      --site-overlay-opacity: 1;
+      --hero-aura-opacity: 0.92;
+      --scroll-glow-shift: 0px;
+      --scroll-glow-scale: 1;
+    }
+
+    html.aura-off {
+      --bg-base: #09090b;
+      --site-overlay-opacity: 0;
+      --hero-aura-opacity: 0.14;
+    }
+
+    html.aura-on {
+      --bg-base: #0b0a0e;
+      --site-overlay-opacity: 1;
+      --hero-aura-opacity: 0.92;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: #f4f4f5;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+      transition: background-color 0.7s ease;
+    }
+
+    /* Background-only full-viewport ambient spectrum overlay (strictly z-0 behind foreground artwork) */
+    #siteAuraOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      mix-blend-mode: normal;
+      opacity: var(--site-overlay-opacity);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(244, 63, 94, 0.11) 0%, transparent 42%),
+        radial-gradient(circle at 86% 24%, rgba(56, 189, 248, 0.11) 0%, transparent 44%),
+        radial-gradient(circle at 22% 68%, rgba(245, 158, 11, 0.09) 0%, transparent 46%),
+        radial-gradient(circle at 80% 78%, rgba(168, 85, 247, 0.11) 0%, transparent 46%),
+        radial-gradient(circle at 50% 48%, rgba(16, 185, 129, 0.07) 0%, transparent 52%);
+    }
+
+    /* Aura toggle button active/inactive visual states */
+    #auraToggleBtn {
+      transition: all 0.3s ease;
+    }
+
+    #auraToggleBtn.aura-is-on {
+      border-color: rgba(251, 191, 36, 0.42);
+      background: rgba(251, 191, 36, 0.1);
+      color: #fef3c7;
+      box-shadow: 0 0 22px rgba(251, 191, 36, 0.14);
+    }
+
+    #auraToggleBtn.aura-is-off {
+      border-color: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      color: #a1a1aa;
+      box-shadow: none;
+    }
+
+    #auraToggleBtn:active {
+      transform: scale(0.96);
+    }
+
+    /* Floating Sound On/Off Pill & Equalizer Animation */
+    #soundToggleBtn {
+      background: rgba(17, 17, 21, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 0.3s ease;
+    }
+
+    #soundToggleBtn:hover {
+      border-color: rgba(255, 255, 255, 0.28);
+      background: rgba(24, 24, 31, 0.85);
+    }
+
+    #soundToggleBtn.sound-is-on {
+      border-color: rgba(125, 211, 252, 0.45);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 22px rgba(56, 189, 248, 0.16);
+      color: #f4f4f5;
+    }
+
+    #soundToggleBtn.sound-is-off {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+      color: #a1a1aa;
+    }
+
+    #soundToggleBtn:active {
+      transform: scale(0.96);
+    }
+
+    @keyframes eqPulse {
+      0%, 100% { transform: scaleY(0.35); }
+      50% { transform: scaleY(1); }
+    }
+
+    .eq-bar {
+      transform-origin: bottom;
+      animation: eqPulse 0.9s ease-in-out infinite;
+    }
+    .eq-bar:nth-child(2) { animation-delay: 0.2s; }
+    .eq-bar:nth-child(3) { animation-delay: 0.4s; }
+
+    /* Spectrum gradient text */
+    .spectrum-text {
+      background: linear-gradient(110deg, #fda4af 0%, #fde68a 26%, #6ee7b7 52%, #7dd3fc 76%, #d8b4fe 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Subtle spectrum border glow around About Me portrait */
+    .aura-border-gradient {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .aura-border-gradient::before {
+      content: "";
+      position: absolute;
+      inset: -1.5px;
+      border-radius: 1.08rem;
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.5), rgba(245, 158, 11, 0.45), rgba(16, 185, 129, 0.45), rgba(56, 189, 248, 0.5), rgba(168, 85, 247, 0.5));
+      z-index: -1;
+      opacity: calc(0.2 + 0.65 * var(--site-overlay-opacity));
+      transition: opacity 0.65s ease;
+    }
+
+    /* Hero screen-blended scroll-reactive aura */
+    .hero-aura-layer {
+      opacity: var(--hero-aura-opacity);
+      mix-blend-mode: screen;
+      transform: translate3d(0, var(--scroll-glow-shift), 0) scale(var(--scroll-glow-scale));
+      transition: opacity 0.7s ease, transform 0.25s ease-out;
+      will-change: transform, opacity;
+    }
+
+    /* Gallery-wall masonry layout with generous breathing room */
+    .masonry-grid {
+      column-count: 1;
+      column-gap: 2.25rem;
+    }
+
+    @media (min-width: 640px) {
+      .masonry-grid {
+        column-count: 2;
+        column-gap: 2.35rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .masonry-grid {
+        column-count: 3;
+        column-gap: 2.65rem;
+      }
+    }
+
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 2.35rem;
+      isolation: isolate;
+      background-color: #111115;
+    }
+
+    @media (min-width: 1024px) {
+      .masonry-item {
+        margin-bottom: 2.65rem;
+      }
+    }
+
+    /* Artwork protection: prevent accidental drag/save */
+    .protected-artwork img {
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #09090b;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #27272a;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3f3f46;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-amber-300/20 selection:text-amber-200">
+
+  <!-- Background-Only Full-Site Spectrum Aura Layer -->
+  <div id="siteAuraOverlay" aria-hidden="true"></div>
+
+  <!-- Floating Translucent Sound On/Off Pill (Bottom-Right, 75% Opacity) -->
+  <button
+    id="soundToggleBtn"
+    type="button"
+    aria-pressed="true"
+    aria-label="Toggle Background Soundtrack"
+    title="Toggle Background Soundtrack"
+    class="sound-is-on fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full text-xs font-medium tracking-wider uppercase cursor-pointer"
+  >
+    <!-- Muted Speaker Icon -->
+    <span id="soundIconOff" class="hidden inline-flex items-center justify-center text-zinc-400">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H3v6h3l5 4V5z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M22 9l-6 6M16 9l6 6" />
+      </svg>
+    </span>
+
+    <!-- Animated Equalizer Icon (Active: Sound On) -->
+    <span id="soundIconOn" class="inline-flex items-end gap-[2.5px] h-3.5 w-4 justify-center text-sky-300" aria-hidden="true">
+      <span class="eq-bar w-[2.5px] h-full rounded-full bg-current"></span>
+      <span class="eq-bar w-[2.5px] h-full rounded-full bg-current"></span>
+      <span class="eq-bar w-[2.5px] h-full rounded-full bg-current"></span>
+    </span>
+
+    <span id="soundToggleLabel">Sound On</span>
+  </button>
+
+  <!-- =====================================================================
+       1. GLASSMORPHIC NAVIGATION HEADER
+  ====================================================================== -->
+  <header class="sticky top-0 z-30 border-b border-white/10 bg-obsidian/80 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
+      <!-- Artist Signature / Wordmark -->
+      <a href="#top" class="group flex items-center gap-3 focus:outline-none">
+        <span class="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-rose-400 via-amber-300 to-sky-400 group-hover:scale-125 transition-transform"></span>
+        <div>
+          <span class="font-serif text-xl sm:text-2xl font-semibold tracking-[0.14em] text-zinc-100 block leading-none uppercase">
+            HASAN MAHMUD
+          </span>
+          <span class="text-[9px] uppercase tracking-[0.26em] text-zinc-400 block mt-1">
+            visual portfolio
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav aria-label="Primary Navigation" class="hidden md:flex items-center gap-8 text-xs uppercase tracking-[0.2em] text-zinc-300">
+        <a href="#gallery" class="hover:text-white transition-colors">Works</a>
+        <a href="#series" class="hover:text-white transition-colors">Series</a>
+        <a href="#about" class="hover:text-white transition-colors">About</a>
+        <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+      </nav>
+
+      <!-- Right Controls: Aura Toggle + Mobile Hamburger -->
+      <div class="flex items-center gap-2.5">
+        <button
+          id="auraToggleBtn"
+          type="button"
+          aria-pressed="true"
+          title="Toggle Ambient Spectrum Aura"
+          class="aura-is-on inline-flex items-center gap-2 px-3.5 py-2 rounded-full border text-[11px] font-medium uppercase tracking-[0.18em] cursor-pointer"
+        >
+          <span id="auraDot" class="w-2 h-2 rounded-full bg-gradient-to-tr from-rose-400 via-amber-300 to-sky-400 shadow-[0_0_8px_rgba(251,191,36,0.85)]"></span>
+          <span id="auraToggleLabel">Aura: On</span>
+        </button>
+
+        <button
+          id="mobileMenuBtn"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+          aria-label="Toggle Navigation Menu"
+          class="md:hidden p-2.5 rounded-full border border-white/10 bg-white/5 text-zinc-200 hover:bg-white/10 transition-colors cursor-pointer"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-charcoal/95 backdrop-blur-2xl px-6 py-5 space-y-3">
+      <a href="#gallery" class="mobile-nav-link block py-2 text-xs uppercase tracking-[0.22em] text-zinc-300 hover:text-white">Works</a>
+      <a href="#series" class="mobile-nav-link block py-2 text-xs uppercase tracking-[0.22em] text-zinc-300 hover:text-white">Series</a>
+      <a href="#about" class="mobile-nav-link block py-2 text-xs uppercase tracking-[0.22em] text-zinc-300 hover:text-white">About</a>
+      <a href="#contact" class="mobile-nav-link block py-2 text-xs uppercase tracking-[0.22em] text-zinc-300 hover:text-white">Contact</a>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       2. EDITORIAL HERO SECTION WITH SCROLL-REACTIVE AURA
+  ====================================================================== -->
+  <section id="top" class="relative z-10 overflow-hidden border-b border-white/10">
+    <!-- Scroll-Reactive Ambient Glow Layer -->
+    <div aria-hidden="true" class="hero-aura-layer pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="absolute -top-24 left-1/4 w-[28rem] h-[28rem] rounded-full bg-rose-500/20 blur-[120px]"></div>
+      <div class="absolute top-12 right-1/4 w-[32rem] h-[32rem] rounded-full bg-sky-500/20 blur-[130px]"></div>
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[36rem] h-[20rem] rounded-full bg-amber-400/15 blur-[120px]"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-5 sm:px-8 py-20 sm:py-28 lg:py-32">
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-[11px] uppercase tracking-[0.24em] text-zinc-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-300"></span>
+          <span>Photographer · Filmmaker · Visual Storyteller • Dhaka, Bangladesh</span>
+        </div>
+
+        <h1 class="mt-7 font-serif text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-zinc-100 leading-[1.06]">
+          Observe Deeply, <br class="hidden sm:inline" />
+          <span class="spectrum-text italic font-normal">Create Thoughtfully</span> &amp; Tell Stories That Matter.
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-base sm:text-lg text-zinc-300/90 font-light leading-relaxed">
+          Independent photographer, filmmaker, and visual storyteller based in Dhaka, Bangladesh—founder of <span class="text-zinc-100 font-normal">Enchanted Ambience Photography</span>, crafting expressive still imagery and motion pictures across weddings, portraits, events, and documentary projects since 2020.
+        </p>
+
+        <div class="mt-9 flex flex-wrap items-center gap-4">
+          <a
+            href="#gallery"
+            class="px-6 py-3.5 rounded-full bg-zinc-100 text-obsidian text-xs font-medium uppercase tracking-[0.2em] hover:bg-white transition-all shadow-[0_0_30px_rgba(255,255,255,0.16)]"
+          >
+            Explore 130 Works
+          </a>
+          <a
+            href="#series"
+            class="px-6 py-3.5 rounded-full border border-white/15 bg-white/[0.03] text-zinc-200 text-xs font-medium uppercase tracking-[0.2em] hover:bg-white/10 transition-all"
+          >
+            Visual Essays
+          </a>
+        </div>
+      </div>
+
+      <!-- Subtle Curatorial Metadata Strip -->
+      <div class="mt-14 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-6 text-xs">
+        <div>
+          <span class="text-zinc-500 uppercase tracking-[0.2em] block text-[10px]">Curated Archive</span>
+          <span id="heroArchiveCount" class="mt-1 block font-serif text-2xl text-zinc-100">130 Plates • 200+ Events</span>
+        </div>
+        <div>
+          <span class="text-zinc-500 uppercase tracking-[0.2em] block text-[10px]">Studio Founded 2021</span>
+          <span class="mt-1 block font-serif text-2xl text-zinc-100">Enchanted Ambience</span>
+        </div>
+        <div>
+          <span class="text-zinc-500 uppercase tracking-[0.2em] block text-[10px]">Primary Optics</span>
+          <span class="mt-1 block font-serif text-2xl text-zinc-100">24mm • 50mm • 85mm • 135mm</span>
+        </div>
+        <div>
+          <span class="text-zinc-500 uppercase tracking-[0.2em] block text-[10px]">Home Base</span>
+          <span class="mt-1 block font-serif text-2xl text-zinc-100">Dhaka, BD • Since 2020</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       3. CURATED EXHIBITION GALLERY WITH CATEGORY FILTER TABS
+  ====================================================================== -->
+  <main id="gallery" class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-white/10">
+      <div>
+        <span class="text-[11px] uppercase tracking-[0.25em] text-amber-300/90">Exhibition Archive</span>
+        <h2 class="mt-2 font-serif text-3xl sm:text-5xl font-semibold text-zinc-100">
+          Selected Photographs
+        </h2>
+      </div>
+      <p id="frameCount" class="text-xs font-mono uppercase tracking-[0.2em] text-zinc-400">
+        Showing 130 works
+      </p>
+    </div>
+
+    <!-- Category Filter Pills -->
+    <div
+      id="filterTabs"
+      role="tablist"
+      aria-label="Filter photographs by genre"
+      class="mt-8 mb-12 flex flex-wrap items-center gap-2.5"
+    ></div>
+
+    <!-- Responsive 3-Column Gallery-Wall Masonry Grid -->
+    <div id="masonryGallery" class="masonry-grid protected-artwork"></div>
+  </main>
+
+  <!-- =====================================================================
+       4. VISUAL SERIES & MONOGRAPH ESSAYS
+  ====================================================================== -->
+  <section id="series" class="relative z-10 border-t border-white/10 bg-charcoal/40 py-20 sm:py-24">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="max-w-2xl">
+        <span class="text-[11px] uppercase tracking-[0.25em] text-sky-300/90">Curated Monographs</span>
+        <h2 class="mt-2 font-serif text-3xl sm:text-5xl font-semibold text-zinc-100">
+          Visual Series &amp; Essays
+        </h2>
+        <p class="mt-3 text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
+          Extended thematic sequences examining weather, urban geometry, and nocturnal reflections across Bangladesh.
+        </p>
+      </div>
+
+      <div id="seriesGrid" class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-7"></div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       5. ABOUT THE ARTIST
+  ====================================================================== -->
+  <section id="about" class="relative z-10 border-t border-white/10 py-20 sm:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      <!-- Artist Portrait Frame with Spectrum Aura Border -->
+      <div class="lg:col-span-5 lg:sticky lg:top-28">
+        <div class="aura-border-gradient max-w-[260px] sm:max-w-[280px] mx-auto lg:mx-0 rounded-2xl bg-charcoal p-2.5 shadow-2xl protected-artwork">
+          <div class="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-obsidian">
+            <img
+              src="https://res.cloudinary.com/bpz8u8mh/image/upload/v1795129386/487900983_2466215587060350_2137335845860190887_n_1.jpg"
+              alt="Hasan Mahmud Fahim — Photographer, Filmmaker & Visual Storyteller in Dhaka"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+              data-title="Hasan Mahmud Fahim"
+              onerror="handleImageFallback(this)"
+              class="w-full h-full object-cover object-top"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-2 text-[11px] text-zinc-300">
+              <div>
+                <span class="uppercase tracking-[0.2em] font-medium block text-zinc-100">HASAN MAHMUD FAHIM</span>
+                <span class="text-[10px] tracking-[0.14em] text-amber-200/90 block mt-0.5">Photographer · Filmmaker · Visual Storyteller</span>
+              </div>
+              <span class="font-mono text-[10px] text-zinc-400 shrink-0">Dhaka, BD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Artist Biography, Milestones, Philosophy & Gear -->
+      <div class="lg:col-span-7 space-y-6">
+        <div>
+          <span class="text-[11px] uppercase tracking-[0.25em] text-amber-300/90">Biography &amp; Practice</span>
+          <h2 class="mt-2 font-serif text-3xl sm:text-5xl font-semibold text-zinc-100 tracking-tight uppercase">
+            HASAN MAHMUD FAHIM
+          </h2>
+          <p class="mt-1.5 text-xs sm:text-sm uppercase tracking-[0.22em] text-zinc-400 font-medium">
+            Photographer · Filmmaker · Visual Storyteller &nbsp;•&nbsp; Dhaka, Bangladesh
+          </p>
+        </div>
+
+        <div class="space-y-4 text-base text-zinc-300 font-light leading-relaxed">
+          <p>
+            I am an independent photographer, filmmaker, and visual storyteller based in Dhaka, Bangladesh. My creative journey began with an early curiosity about visual media, photography, and digital editing, which gradually developed into a professional pursuit of storytelling through images and motion pictures.
+          </p>
+          <p>
+            Since 2020, I have been working in photography, covering weddings, portraits, events, and documentary projects. In 2021, I established <span class="text-zinc-100 font-medium">Enchanted Ambience Photography</span>, through which I have worked on more than <span class="text-zinc-100 font-medium">200 events</span>.
+          </p>
+          <p class="text-zinc-400">
+            Beyond photography, I explore filmmaking, cinematography, creative direction, and post-production. I enjoy developing visual concepts, experimenting with cinematic techniques, and transforming ideas into meaningful visual experiences.
+          </p>
+          <p class="text-zinc-400">
+            My interests extend beyond the camera. I find inspiration in human psychology, culture, architecture, music, cinema, and everyday life. These influences continuously shape my creative perspective. I consider myself an evolving creative professional, always exploring new techniques, learning different disciplines, and looking for new ways to tell stories.
+          </p>
+        </div>
+
+        <!-- Signature Philosophy Pull-Quote -->
+        <blockquote class="relative rounded-2xl border border-amber-300/25 bg-gradient-to-r from-amber-300/[0.06] via-white/[0.02] to-transparent px-6 py-5">
+          <p class="font-serif italic text-xl sm:text-2xl text-zinc-100 leading-snug">
+            “My approach is simple: observe deeply, create thoughtfully, and tell stories that matter.”
+          </p>
+        </blockquote>
+
+        <!-- Career Milestones & Highlights -->
+        <div class="pt-3 grid grid-cols-2 sm:grid-cols-4 gap-3.5 text-xs">
+          <div class="p-4 rounded-2xl bg-charcoal/85 border border-white/10">
+            <span class="font-serif text-2xl font-semibold text-amber-200 block leading-none">2020</span>
+            <span class="mt-2 text-zinc-400 uppercase tracking-[0.16em] text-[10px] block">Active Since</span>
+            <span class="mt-0.5 text-zinc-200 font-medium block">Professional Practice</span>
+          </div>
+          <div class="p-4 rounded-2xl bg-charcoal/85 border border-white/10">
+            <span class="font-serif text-2xl font-semibold text-sky-200 block leading-none">2021</span>
+            <span class="mt-2 text-zinc-400 uppercase tracking-[0.16em] text-[10px] block">Founded Studio</span>
+            <span class="mt-0.5 text-zinc-200 font-medium block">Enchanted Ambience</span>
+          </div>
+          <div class="p-4 rounded-2xl bg-charcoal/85 border border-white/10">
+            <span class="font-serif text-2xl font-semibold text-emerald-200 block leading-none">200+</span>
+            <span class="mt-2 text-zinc-400 uppercase tracking-[0.16em] text-[10px] block">Events Covered</span>
+            <span class="mt-0.5 text-zinc-200 font-medium block">Weddings &amp; Commissions</span>
+          </div>
+          <div class="p-4 rounded-2xl bg-charcoal/85 border border-white/10">
+            <span class="font-serif text-2xl font-semibold text-rose-200 block leading-none">Multi</span>
+            <span class="mt-2 text-zinc-400 uppercase tracking-[0.16em] text-[10px] block">Disciplines</span>
+            <span class="mt-0.5 text-zinc-200 font-medium block">Photo · Film · Direction</span>
+          </div>
+        </div>
+
+        <!-- Editorial Gear & Workflow Showcase -->
+        <div class="pt-5 border-t border-white/10 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] uppercase tracking-[0.25em] text-sky-300/90">Gear &amp; Post-Processing Workflow</span>
+            <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-500">Full-Frame System</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+            <div class="p-4 rounded-2xl bg-charcoal/85 border border-white/10 space-y-1.5">
+              <span class="text-amber-300/90 uppercase tracking-[0.18em] text-[10px] block">Current Primary Kit</span>
+              <p class="text-zinc-100 font-medium leading-snug">Sony A7 III</p>
+              <p class="text-zinc-400 font-light leading-relaxed">Sony FE 50mm f/1.8 • Viltrox 24mm f/1.8</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-charcoal/85 border border-white/10 space-y-1.5">
+              <span class="text-zinc-400 uppercase tracking-[0.18em] text-[10px] block">Previous Archive System</span>
+              <p class="text-zinc-100 font-medium leading-snug">Canon EOS R</p>
+              <p class="text-zinc-400 font-light leading-relaxed">Viltrox RF 85mm • Canon RF 50mm • Canon 135mm • Tokina 11–16mm Wide</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-charcoal/85 border border-white/10 space-y-1.5">
+              <span class="text-emerald-300/90 uppercase tracking-[0.18em] text-[10px] block">Color &amp; Retouching</span>
+              <p class="text-zinc-100 font-medium leading-snug">Adobe Lightroom &amp; Photoshop</p>
+              <p class="text-zinc-400 font-light leading-relaxed">Tonal grading, color calibration &amp; fine finishing</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+          <div class="p-4 rounded-2xl bg-charcoal/80 border border-white/10">
+            <span class="text-zinc-400 uppercase tracking-[0.18em] text-[10px] block">Editorial &amp; Portrait</span>
+            <span class="mt-1.5 block text-zinc-100 font-medium">Natural Light &amp; Character Studies</span>
+          </div>
+          <div class="p-4 rounded-2xl bg-charcoal/80 border border-white/10">
+            <span class="text-zinc-400 uppercase tracking-[0.18em] text-[10px] block">Documentary &amp; Street</span>
+            <span class="mt-1.5 block text-zinc-100 font-medium">Dhaka &amp; Regional Chronicles</span>
+          </div>
+          <div class="p-4 rounded-2xl bg-charcoal/80 border border-white/10">
+            <span class="text-zinc-400 uppercase tracking-[0.18em] text-[10px] block">Weddings &amp; Live Stage</span>
+            <span class="mt-1.5 block text-zinc-100 font-medium">Ceremonial &amp; Concert Coverage</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       6. COMMISSIONS & STUDIO CONTACT
+  ====================================================================== -->
+  <section id="contact" class="relative z-10 border-t border-white/10 bg-charcoal/50 py-20 sm:py-24">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center">
+      <span class="text-[11px] uppercase tracking-[0.25em] text-amber-300/90">Inquiries &amp; Commissions</span>
+      <h2 class="mt-3 font-serif text-3xl sm:text-5xl font-semibold text-zinc-100">
+        Available for Editorial, Commercial &amp; Wedding Commissions.
+      </h2>
+      <p class="mt-4 text-sm sm:text-base text-zinc-400 font-light max-w-xl mx-auto leading-relaxed">
+        For bookings, fine-art print inquiries, or collaborative visual projects in Dhaka and worldwide, reach out directly.
+      </p>
+
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="mailto:fahimf337@gmail.com"
+          class="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-zinc-100 text-obsidian text-xs font-medium uppercase tracking-[0.2em] hover:bg-white transition-all shadow-[0_0_25px_rgba(255,255,255,0.14)]"
+        >
+          <span>fahimf337@gmail.com</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </a>
+
+        <button
+          id="copyEmailBtn"
+          type="button"
+          class="inline-flex items-center gap-2.5 px-5 py-3.5 rounded-full border border-white/15 bg-white/[0.03] text-zinc-200 text-xs font-medium uppercase tracking-[0.2em] hover:bg-white/10 transition-all cursor-pointer"
+        >
+          <span>Copy Email</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+        </button>
+
+        <a
+          href="https://www.facebook.com/hasanmahmudfahim337/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Follow Hasan Mahmud Fahim on Facebook"
+          class="inline-flex items-center gap-2.5 px-5 py-3.5 rounded-full border border-white/15 bg-white/[0.03] text-zinc-200 text-xs font-medium uppercase tracking-[0.2em] hover:border-sky-300/40 hover:bg-sky-400/10 hover:text-white transition-all"
+        >
+          <svg class="w-4 h-4 text-sky-300" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+          </svg>
+          <span>Facebook</span>
+        </a>
+      </div>
+
+      <div class="mt-3 h-5 flex items-center justify-center">
+        <span
+          id="copyFeedback"
+          role="status"
+          aria-live="polite"
+          class="opacity-0 transition-opacity duration-300 text-xs font-mono text-emerald-300"
+        >
+          ✓ fahimf337@gmail.com copied to clipboard
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       7. FOOTER WITH LIVE DHAKA TIME
+  ====================================================================== -->
+  <footer class="relative z-10 border-t border-white/10 py-10 px-6 text-xs text-zinc-400">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© <span id="currentYear">2026</span> <span class="uppercase tracking-wider text-zinc-300">HASAN MAHMUD</span>. All visual works protected.</p>
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-5 font-mono text-[11px] text-zinc-400">
+        <a
+          href="https://www.facebook.com/hasanmahmudfahim337/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Hasan Mahmud Fahim Facebook Profile"
+          class="inline-flex items-center gap-2 text-zinc-300 hover:text-sky-300 transition-colors font-sans text-xs uppercase tracking-[0.18em]"
+        >
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+          </svg>
+          <span>Facebook</span>
+        </a>
+        <span class="text-white/15" aria-hidden="true">|</span>
+        <div class="flex items-center gap-2.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Dhaka, BD • <span id="dhakaClock">--:--:--</span></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       8. FULL-SCREEN LIGHTBOX MODAL
+  ====================================================================== -->
+  <div
+    id="lightboxModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="lightboxTitle"
+    class="hidden fixed inset-0 z-50 bg-obsidian/95 backdrop-blur-2xl flex items-center justify-center p-4 sm:p-8"
+  >
+    <div class="relative w-full max-w-6xl rounded-3xl bg-charcoal border border-white/10 overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 max-h-[92vh]">
+      <!-- Image Stage -->
+      <div class="lg:col-span-8 relative bg-obsidian flex items-center justify-center p-4 sm:p-6 min-h-[45vh] lg:min-h-[75vh] protected-artwork">
+        <img
+          id="lightboxImg"
+          src=""
+          alt=""
+          referrerpolicy="no-referrer"
+          onerror="handleImageFallback(this)"
+          class="max-h-[68vh] lg:max-h-[82vh] w-auto max-w-full object-contain rounded-xl shadow-2xl"
+        />
+
+        <!-- Prev / Next Controls -->
+        <button
+          id="lightboxPrev"
+          type="button"
+          aria-label="Previous Artwork"
+          class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-charcoal/85 border border-white/15 text-zinc-100 hover:bg-white/15 transition-colors cursor-pointer"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <button
+          id="lightboxNext"
+          type="button"
+          aria-label="Next Artwork"
+          class="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-charcoal/85 border border-white/15 text-zinc-100 hover:bg-white/15 transition-colors cursor-pointer"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Metadata & Story Panel -->
+      <div class="lg:col-span-4 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto border-t lg:border-t-0 lg:border-l border-white/10">
+        <div>
+          <div class="flex items-center justify-between gap-3">
+            <span id="lightboxGenre" class="px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.2em] bg-white/10 text-amber-200">
+              Genre
+            </span>
+            <button
+              id="lightboxClose"
+              type="button"
+              aria-label="Close Lightbox"
+              class="p-2 rounded-full border border-white/10 bg-white/5 text-zinc-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <h3 id="lightboxTitle" class="mt-5 font-serif text-2xl sm:text-3xl font-semibold text-zinc-100">
+            Artwork Title
+          </h3>
+          <p id="lightboxLocation" class="mt-1 text-xs uppercase tracking-[0.18em] text-zinc-400">
+            Location
+          </p>
+
+          <p id="lightboxStory" class="mt-5 text-sm text-zinc-300 leading-relaxed font-light">
+            Story description.
+          </p>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-white/10 space-y-2.5 text-xs">
+          <div class="flex justify-between gap-4">
+            <span class="text-zinc-500">Camera</span>
+            <span id="lightboxCamera" class="text-zinc-200 font-medium text-right">—</span>
+          </div>
+          <div class="flex justify-between gap-4">
+            <span class="text-zinc-500">Optics</span>
+            <span id="lightboxLens" class="text-zinc-200 font-medium text-right">—</span>
+          </div>
+          <div class="flex justify-between gap-4">
+            <span class="text-zinc-500">Exposure</span>
+            <span id="lightboxExif" class="font-mono text-zinc-300 text-right">—</span>
+          </div>
+          <div class="flex justify-between gap-4">
+            <span class="text-zinc-500">Post-Processing</span>
+            <span id="lightboxWorkflow" class="text-zinc-200 font-medium text-right">Adobe Lightroom &amp; Photoshop</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       9. VISUAL SERIES STORY MODAL
+  ====================================================================== -->
+  <div
+    id="seriesModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="seriesModalTitle"
+    class="hidden fixed inset-0 z-50 bg-obsidian/95 backdrop-blur-2xl flex items-center justify-center p-4 sm:p-8"
+  >
+    <div class="relative w-full max-w-4xl rounded-3xl bg-charcoal border border-white/10 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
+      <div class="relative h-64 sm:h-80 w-full bg-obsidian overflow-hidden protected-artwork">
+        <img
+          id="seriesModalCover"
+          src=""
+          alt=""
+          referrerpolicy="no-referrer"
+          onerror="handleImageFallback(this)"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/40 to-transparent"></div>
+        <button
+          id="seriesModalClose"
+          type="button"
+          aria-label="Close Series Story"
+          class="absolute top-4 right-4 p-2.5 rounded-full bg-obsidian/80 border border-white/15 text-zinc-200 hover:text-white transition-colors cursor-pointer"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <div class="absolute bottom-5 left-6 right-6">
+          <span id="seriesModalTag" class="text-[10px] uppercase tracking-[0.24em] text-amber-300">Essay</span>
+          <h3 id="seriesModalTitle" class="mt-1 font-serif text-3xl sm:text-4xl font-semibold text-white">
+            Series Title
+          </h3>
+        </div>
+      </div>
+
+      <div class="p-6 sm:p-8 overflow-y-auto space-y-4 text-sm sm:text-base text-zinc-300 leading-relaxed font-light">
+        <p id="seriesModalSubtitle" class="text-xs uppercase tracking-[0.2em] text-zinc-400 font-normal"></p>
+        <p id="seriesModalBody"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       10. INTERACTIVE PORTFOLIO SCRIPT
+  ====================================================================== -->
+  <audio
+    id="siteSoundtrack"
+    src="https://res.cloudinary.com/bpz8u8mh/video/upload/v1795126496/Jim_Croce_-_Time_In_A_Bottle_-_Instrumental.mp3"
+    preload="auto"
+    loop
+  ></audio>
+
+  <script>
+    // -----------------------------------------------------------------------
+    // 1. PORTFOLIO DATA (Strictly User-Provided Works: Portrait, Street, Fashion, Automotive, Travel, Concerts, Wedding)
+    // -----------------------------------------------------------------------
+    const categories = ['All Colors', 'Portrait', 'Street', 'Fashion', 'Automotive', 'Travel', 'Concerts', 'Wedding'];
+
+    let activeCategory = 'All Colors';
+    let currentFilteredWorks = [];
+    let currentLightboxIndex = 0;
+
+    const portfolioWorks = [
+      {
+        id: 1,
+        title: 'The Storm Inside',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/DyVrw2tz/The-storm-of-inside-Section-1-Hasan-Mahmud-Fahim-Regular-21201045-8801904299764-1-%28Regular-St.jpg',
+        fallbackImage: 'https://i.postimg.cc/DyVrw2tz/The-storm-of-inside-Section-1-Hasan-Mahmud-Fahim-Regular-21201045-8801904299764-1-(Regular-St.jpg',
+        story: 'A quiet internal tempest framed on the streets of Dhaka—where stillness on the surface meets deep emotional undercurrents.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 320'
+      },
+      {
+        id: 2,
+        title: 'Intimate Light I',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/dtdzhV3m/724691981-2887597984922106-3620074537857777668-n.jpg',
+        story: 'Soft natural illumination sculpting expression and quiet poise—capturing an unguarded human moment in stillness.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 3,
+        title: 'Distant Horizons',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/_JDO6935_copy',
+        story: 'Open landscapes and quiet horizons captured on the road—where vast skies meet unhurried stillness.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/640s • f/2.5 • ISO 160'
+      },
+      {
+        id: 4,
+        title: 'Electric Crescendo',
+        genre: 'Concerts',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/486626953_2460355120979730_3975856155869638808_n',
+        story: 'Raw live-music energy suspended beneath beams of stage light—capturing the peak of sound and motion.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/320s • f/1.8 • ISO 800'
+      },
+      {
+        id: 5,
+        title: 'Twilight Blessings',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/481517294_661594936523041_1554021914852627827_n_1',
+        story: 'Warm twilight hues wrapping an intimate wedding moment in quiet reverence and timeless celebration.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 6,
+        title: 'Midnight Chassis',
+        genre: 'Automotive',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/472429730_2394171987598044_2571749651283248338_n',
+        story: 'Sculptural automotive lines and deep evening reflections captured in crisp nocturnal light.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/2.0',
+        exif: '1/320s • f/2.0 • ISO 400'
+      },
+      {
+        id: 7,
+        title: 'Inverted Perspectives',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/4ND4CfNV/upside-down.jpg',
+        story: 'A disorienting street reflection turning everyday urban motion upside down—where puddles and angles reimagine reality.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/500s • f/2.5 • ISO 250'
+      },
+      {
+        id: 8,
+        title: 'Sacred Harmony',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/481296647_654221500593718_5748329382302544147_n',
+        story: 'Delicate ceremonial light framing quiet joy and timeless wedding tradition.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 9,
+        title: 'Chrome & Asphalt I',
+        genre: 'Automotive',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/1tS5QhnY/522626368-2575305762817998-661644282001953419-n.jpg',
+        story: 'Crisp metallic reflections and sculptural bodywork lines captured against an urban twilight backdrop.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/2.0',
+        exif: '35mm • f/2.0 • 1/320s • ISO 400'
+      },
+      {
+        id: 10,
+        title: 'Golden Reverence',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/480291029_650010381014830_1539180321127269957_n_1',
+        story: 'Luminous evening tones wrapping bridal elegance and heartfelt emotion in soft ceremonial warmth.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 11,
+        title: 'Sacred Vows & Golden Glow',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/863322653_1145803738102156_3083150880986226878_n',
+        story: 'An intimate celebration of tradition, warmth, and unscripted emotion—framed in luminous ceremonial light.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 400'
+      },
+      {
+        id: 12,
+        title: 'Quiet Contemplation I',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/Y0nW0qQ0/484475257-2454643931550849-1421545376528268995-n.jpg',
+        story: 'An unhurried portrait framed in soft afternoon light—letting subtle expression and calm atmosphere carry the frame.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/400s • f/1.8 • ISO 200'
+      },
+      {
+        id: 13,
+        title: 'Sartorial Poise I',
+        genre: 'Fashion',
+        location: 'Banani, Dhaka',
+        image: 'https://i.postimg.cc/T1GxZrS3/489054955-2474590796222829-7823977492875295203-n.jpg',
+        story: 'Editorial tailoring framed in crisp directional light—balancing architectural posture with contemporary Dhaka fashion sensibilities.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/500s • f/2.0 • ISO 160'
+      },
+      {
+        id: 14,
+        title: 'Silk & Vermilion',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/480979807_657873730228495_6592452176595247603_n',
+        story: 'Rich ceremonial textures and luminous traditional craftsmanship preserved in soft, unhurried evening light.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 15,
+        title: 'Drift Beyond the Horizon',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/861993798_3021296658218904_4441637027016428317_n',
+        story: 'Vast open terrain framed in soft atmospheric light—preserving a fleeting moment of quiet exploration.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/500s • f/2.5 • ISO 200'
+      },
+      {
+        id: 16,
+        title: 'Quiet Crossroads',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/c4hqhdg5/139674507-1369404373408149-5512730414173624308-n.jpg',
+        story: 'A quiet pause where intersecting paths, afternoon light, and urban solitude converge in stillness.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/500s • f/2.2 • ISO 250'
+      },
+      {
+        id: 17,
+        title: 'Veiled Serenade II',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/478617291_647405814608620_5966784117250100582_n',
+        story: 'Intricate bridal embroidery and tranquil grace preserved in warm directional light.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 18,
+        title: 'Spotlight & Sound',
+        genre: 'Concerts',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/486767921_2460355347646374_3248152718715514794_n',
+        story: 'Sharp stage illumination carving out the performer amidst atmospheric haze and live-concert intensity.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 800'
+      },
+      {
+        id: 19,
+        title: 'Grace in Crimson',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/615818014_908728125143053_2844469454171182987_n',
+        story: 'Radiant bridal elegance and intricate ceremonial embroidery captured in soft, luminous ambient light.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 20,
+        title: 'Embers of Tradition',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/480675955_653875853961616_7181190301145338792_n',
+        story: 'Warm golden highlights and candid emotion woven into an intimate wedding portrait.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 21,
+        title: 'Whispers of Celebration',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/862577376_1145801204769076_6449235112600005362_n',
+        story: 'Graceful bridal poise and intricate ceremonial detail illuminated by soft ambient evening light.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 320'
+      },
+      {
+        id: 22,
+        title: 'Bridal Reverie',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/481270924_656927096989825_8715907848961667351_n',
+        story: 'A tranquil pause amidst wedding festivities—highlighting poised grace, delicate adornment, and warm ambient glow.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 23,
+        title: 'Beyond the Familiar Bend',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/123141637_1308784516136802_1984943067606733620_n',
+        story: 'Following quiet roads into open air—where changing light and distance invite unhurried reflection.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/500s • f/2.5 • ISO 200'
+      },
+      {
+        id: 24,
+        title: 'Sculpted Aerodynamics II',
+        genre: 'Automotive',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/472647115_2394172050931371_4953227127115107194_n',
+        story: 'Sharp body contours and specular highlights emphasizing precision engineering in dramatic light.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/400s • f/2.2 • ISO 320'
+      },
+      {
+        id: 25,
+        title: 'Sacred Stillness II',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/477070394_646209498061585_5376449303840785293_n',
+        story: 'Composed bridal poise framed in soft ambient glow—celebrating timeless heritage and quiet devotion.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 26,
+        title: 'Twilight Gaze',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2024)',
+        image: 'https://i.postimg.cc/L8LCwrt1/626686916-2759338324414740-3820072018456275202-n.jpg',
+        story: 'Soft twilight tones meeting direct eye contact—an unhurried study in presence, calm, and evening atmosphere.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4 • Natural Light',
+        exif: '1/250s • f/1.6 • ISO 320'
+      },
+      {
+        id: 27,
+        title: 'Urban Pulse IV',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/0N5d1ch2/Southeast-University-Hasan-Mahmud-Fahim-Single-01904299764-01.jpg',
+        story: 'Opening frame of an observational street study—ordinary gestures, layered light, and the unspoken choreography of Dhaka.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/500s • f/2.8 • ISO 320'
+      },
+      {
+        id: 28,
+        title: 'Journey Through Stillness',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/486238706_2462476374100938_389720362137261906_n',
+        story: 'Natural textures and serene distance discovered far from the city rush—grounded in quiet observation.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/500s • f/2.2 • ISO 200'
+      },
+      {
+        id: 29,
+        title: 'Golden Hour Cadence',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/s2YGSJ5t/497454697-2514712912210617-1285419446411316292-n.jpg',
+        story: 'Warm late-day highlights wrapping gently around the subject—preserving natural warmth and quiet emotional resonance.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/500s • f/2.0 • ISO 160'
+      },
+      {
+        id: 30,
+        title: 'Moments of Union',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/481049069_656922553656946_1103810391157407248_n',
+        story: 'Candid joy and shared warmth framed in natural evening tones—celebrating connection and unscripted emotion.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 250'
+      },
+      {
+        id: 31,
+        title: 'Veil of Gold',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/480695390_653270697355465_6108228357704837101_n',
+        story: 'Soft luminous reflections tracing intricate bridal adornment and serene presence.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 32,
+        title: 'Crimson & Grace',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/477444563_646209191394949_5204107929355175827_n',
+        story: 'Rich ceremonial textures and luminous warmth captured in an unscripted wedding moment.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 33,
+        title: 'Nocturnal Horsepower',
+        genre: 'Automotive',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/s2d3Ydc6/520693394-2575305566151351-5027772409519108907-n.jpg',
+        story: 'Dramatic low-angle framing emphasizing stance, wheel geometry, and ambient evening highlights along the chassis.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '50mm • f/1.8 • 1/250s • ISO 640'
+      },
+      {
+        id: 34,
+        title: 'Echoes from the Pit',
+        genre: 'Concerts',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/486237223_2460355360979706_7158171429557523992_n',
+        story: 'Close-quarters stage perspective capturing the visceral connection between musician, instrument, and audience.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/320s • f/1.8 • ISO 800'
+      },
+      {
+        id: 35,
+        title: 'Mist Over the Valley',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/489334779_2471622099853032_1733314100305796634_n',
+        story: 'Soft morning haze drifting across layered hills—capturing the quiet poetry of early travel hours.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/400s • f/2.2 • ISO 250'
+      },
+      {
+        id: 36,
+        title: 'Velvet & Drape',
+        genre: 'Fashion',
+        location: 'Gulshan, Dhaka',
+        image: 'https://i.postimg.cc/MpXw2Zsv/498657977-2514877962194112-5981944227433803618-n.jpg',
+        story: 'Rich fabric texture and fluid silhouette captured in soft studio-grade ambient light, emphasizing grace and quiet confidence.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 200'
+      },
+      {
+        id: 37,
+        title: 'Veiled Serenade',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/616159280_908728068476392_4422370398802675069_n',
+        story: 'Quiet poise and delicate golden reflections—framing an unscripted pause amidst the wedding festivities.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 38,
+        title: 'Luminous Heritage',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/481020913_656922880323580_1449062347236131900_n_1',
+        story: 'Intricate bridal embroidery and timeless ceremonial warmth caught in soft directional light.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 39,
+        title: 'Whispers of Silk',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/476971429_644847971531071_3001275710181152317_n',
+        story: 'Graceful bridal silhouette and delicate textures framed in warm evening light.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 40,
+        title: 'Chrome & Asphalt II',
+        genre: 'Automotive',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/472209546_2394161530932423_3290712373508393729_n',
+        story: 'Clean metallic reflections and street-level perspective highlighting machine stance and evening contrast.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/2.0',
+        exif: '1/320s • f/2.0 • ISO 400'
+      },
+      {
+        id: 41,
+        title: 'Serene Presence',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/Bb6jr9RJ/498231619-2514639868884588-5856222507301491357-n.jpg',
+        story: 'Balanced framing in open shade—where stillness, posture, and candid emotion converge effortlessly.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 250'
+      },
+      {
+        id: 42,
+        title: 'Timeless Union',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/761106318_1070302432318954_2473674983818568040_n',
+        story: 'A quiet, heartfelt exchange framed in warm ceremonial tones—preserving devotion and unscripted joy.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/400s • f/1.8 • ISO 320'
+      },
+      {
+        id: 43,
+        title: 'Urban Solitude',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/P5VgGKMg/472671296-2394150327600210-7620351404486248923-n.jpg',
+        story: 'Solitary human presence set against weathered urban architecture—where quiet reflection endures amidst city motion.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/640s • f/2.0 • ISO 200'
+      },
+      {
+        id: 44,
+        title: 'Echoes of the Trail',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/488254231_2471622516519657_8606183779841647497_n',
+        story: 'Winding pathways framed in natural light—where every turn reveals a fresh sense of scale and solitude.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/640s • f/2.5 • ISO 160'
+      },
+      {
+        id: 45,
+        title: 'Covenant in Light',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/481071655_653270740688794_2521914500997657665_n_1',
+        story: 'Heartfelt celebratory warmth and poise preserved in natural evening glow.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 46,
+        title: 'Golden Garland',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/481112585_655735693775632_4523979361250540662_n',
+        story: 'Festive floral hues and candid laughter illuminated by warm evening light—capturing the heart of the celebration.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 47,
+        title: 'Golden Vows',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/476832798_644847751531093_4231298215540606702_n_1',
+        story: 'Soft candlelight and ceremonial warmth enveloping a quiet moment of union.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 48,
+        title: 'Intimate Light II',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/506rbxDX/724782822-2887595754922329-2958509029373849868-n.jpg',
+        story: 'Subtle shadow falloff and warm ambient tones framing quiet introspection and natural presence.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 200'
+      },
+      {
+        id: 49,
+        title: 'Crimson Reverb',
+        genre: 'Concerts',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/486628076_2460355314313044_3661511957040367769_n',
+        story: 'Saturated stage wash wrapping around the performance in high-contrast concert lighting.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/320s • f/1.8 • ISO 800'
+      },
+      {
+        id: 50,
+        title: 'Sculpted Aerodynamics',
+        genre: 'Automotive',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/zDt5dR7r/520564031-2575305562818018-1659355071124591153-n.jpg',
+        story: 'A study of contoured bodywork, headlamp signatures, and shadow transitions in fading dusk light.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/2.2',
+        exif: '35mm • f/2.2 • 1/400s • ISO 320'
+      },
+      {
+        id: 51,
+        title: 'Quiet Passage',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/472582667_2394150310933545_8705885137337846186_n',
+        story: 'A tranquil corridor of light and landscape—holding onto the calm rhythm of life beyond the metropolis.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 250'
+      },
+      {
+        id: 52,
+        title: 'Sacred Stillness',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/481017935_655346590481209_5170406979755204006_n_1',
+        story: 'Composed bridal serenity framed in soft, luminous glow—honoring tradition and quiet emotional depth.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 250'
+      },
+      {
+        id: 53,
+        title: 'Sacred Reverence',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/616841677_908728585143007_3447375405843830954_n',
+        story: 'Warm ceremonial lighting tracing timeless tradition, intimate emotion, and celebratory grace.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 250'
+      },
+      {
+        id: 54,
+        title: 'Heirloom Radiance',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/477380605_644847968197738_4925552062856754596_n_1',
+        story: 'Intricate traditional adornments and serene bridal grace captured in luminous ambient light.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 55,
+        title: 'Whispers of Dusk',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/8zW7QbXf/491938077-2483382938676948-1909753243261564997-n.jpg',
+        story: 'Fading daylight tracing clean facial contours against a muted evening backdrop—intimate, grounded, and unscripted.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 320'
+      },
+      {
+        id: 56,
+        title: 'Threads of Heritage',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/622874379_914272821255250_6796487792399930818_n',
+        story: 'Rich textures of traditional wedding attire and quiet emotion caught in luminous natural light.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 57,
+        title: 'Velocity in Stillness II',
+        genre: 'Automotive',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/190250851_1459962697685649_8185565541117159080_n',
+        story: 'Dynamic profile framing capturing aerodynamic poise and crisp paint reflections at rest.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/2.0',
+        exif: '1/500s • f/2.5 • ISO 200'
+      },
+      {
+        id: 58,
+        title: 'Nocturne Couture',
+        genre: 'Fashion',
+        location: 'Dhanmondi, Dhaka',
+        image: 'https://i.postimg.cc/4NxkVNTN/489275711-2474593409555901-1306599727313497300-n.jpg',
+        story: 'Evening editorial study pairing dramatic shadow contour with refined styling and composed movement.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 250'
+      },
+      {
+        id: 59,
+        title: 'Crimson & Candlelight',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/481770144_655346290481239_1542717310322834941_n',
+        story: 'Warm golden highlights and rich ceremonial crimson woven together in an intimate wedding portrait.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 60,
+        title: 'Festive Radiance',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/481156740_653270730688795_3960178327133427604_n_1',
+        story: 'Vibrant celebration and unscripted laughter framed in warm twilight tones.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 61,
+        title: 'Solitude by the Shore',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/488549392_2470389366642972_4341164429799314081_n',
+        story: 'Still water and open skies converging at the water’s edge—a study in stillness and natural balance.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/500s • f/2.2 • ISO 200'
+      },
+      {
+        id: 62,
+        title: 'Soft Horizon',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2024)',
+        image: 'https://i.postimg.cc/J0SxdqtK/535553870-2599898850358689-669982638528164567-n.jpg',
+        story: 'Gentle dusk glow wrapping around the silhouette—balancing open negative space with contemplative stillness.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8 • Dusk Glow',
+        exif: '1/320s • f/1.8 • ISO 250'
+      },
+      {
+        id: 63,
+        title: 'Encore Silhouette',
+        genre: 'Concerts',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/486378547_2460355364313039_1176914053093494074_n',
+        story: 'Backlit stage framing turning live sound and movement into a dramatic silhouette study.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 800'
+      },
+      {
+        id: 64,
+        title: 'Timeless Devotion',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/472155564_615746271107908_1191762896162094903_n',
+        story: 'Heartfelt emotion and quiet celebration preserved in soft evening glow.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 65,
+        title: 'Horizons in Silence',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/93480863_1142450782770177_733683166954389504_n',
+        story: 'Distant contours softened by natural haze—preserving an unscripted pause along the journey.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/400s • f/2.2 • ISO 200'
+      },
+      {
+        id: 66,
+        title: 'Vows in Motion',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/480870933_654237333925468_4583005650382362387_n',
+        story: 'Fleeting glances, warm laughter, and celebratory movement preserved in luminous natural light.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 67,
+        title: 'Urban Pulse III',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/W49mN0vR/Southeast-University-Hasan-Mahmud-Fahim-Single-01904299764-02.jpg',
+        story: 'Solitude carved out of the rush—where geometry, shadow, and human presence intersect for a fraction of a second.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/640s • f/2.5 • ISO 250'
+      },
+      {
+        id: 68,
+        title: 'Under Open Skies',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/486310651_2462476297434279_2844169542984894036_n',
+        story: 'Expansive daylight stretching across quiet rural paths—preserving the unhurried pace of life on the move.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/640s • f/2.5 • ISO 160'
+      },
+      {
+        id: 69,
+        title: 'Fragments of Noon',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/0NLhjQFH/138342971-1369404236741496-1835552307004225573-n.jpg',
+        story: 'Sharp midday sunlight slicing across street geometry—turning ordinary pavement into a study of light and shadow.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/800s • f/2.5 • ISO 160'
+      },
+      {
+        id: 70,
+        title: 'Heirloom Glow',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/605535172_892477080101491_8286425165693868717_n',
+        story: 'Intricate bridal adornments and candid emotion bathed in warm evening light.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 71,
+        title: 'Veiled Light',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/gjQ21wv7/490852319-2478401859175056-4882996098039482943-n.jpg',
+        story: 'Delicate directional illumination softening textures and drawing focus straight to emotion and gaze.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/400s • f/1.8 • ISO 200'
+      },
+      {
+        id: 72,
+        title: 'Ceremonial Splendor',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/479215236_634448855636198_2081905220977966135_n',
+        story: 'Warm ceremonial light illuminating heritage details and unscripted joy.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 73,
+        title: 'Serenity in Crimson & Gold',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/622831610_914272711255261_7422836961218136682_n',
+        story: 'A tranquil bridal portrait capturing timeless elegance, warmth, and intimate celebration.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 200'
+      },
+      {
+        id: 74,
+        title: 'Editorial Silhouette',
+        genre: 'Fashion',
+        location: 'Uttara, Dhaka',
+        image: 'https://i.postimg.cc/mDyJ1KXZ/488687353-2472069719808270-740169028661591093-n.jpg',
+        story: 'Clean lines and poised gesture set against muted architectural tones—highlighting form, drape, and attitude.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/500s • f/2.2 • ISO 160'
+      },
+      {
+        id: 75,
+        title: 'Golden Ridge',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/485368859_2456785204670055_6272804388915401738_n',
+        story: 'Warm afternoon sun skimming across distant contours—celebrating texture, elevation, and open air.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/500s • f/2.2 • ISO 200'
+      },
+      {
+        id: 76,
+        title: 'Pulse of the Crowd',
+        genre: 'Concerts',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/486638042_2460355324313043_8896348323024967664_n',
+        story: 'Shared euphoria across the venue—hands, lights, and music converging in a single electric instant.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/320s • f/1.8 • ISO 800'
+      },
+      {
+        id: 77,
+        title: 'Midnight Stance',
+        genre: 'Automotive',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/KYDhtK4S/523884416-2575305509484690-9118688020918529795-n.jpg',
+        story: 'Precision framing isolating aggressive front-end geometry and specular reflections on deep paintwork.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/2.0',
+        exif: '50mm • f/2.0 • 1/200s • ISO 800'
+      },
+      {
+        id: 78,
+        title: 'Wandering Light',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/486254037_2462476290767613_2852280637194784978_n',
+        story: 'Golden afternoon tones settling across open terrain—an ode to curiosity, distance, and quiet wonder.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/500s • f/2.0 • ISO 200'
+      },
+      {
+        id: 79,
+        title: 'Quiet Reverie',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/vBkNmJss/707980880-17994781244985767-1322223764716325014-n.jpg',
+        story: 'An atmospheric character study shaped by soft directional light and contemplative emotion.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 80,
+        title: 'Sacred Promises',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/476835011_634044262343324_2247917923583926032_n',
+        story: 'An intimate moment of connection framed in soft ambient twilight.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 81,
+        title: 'Auspicious Moments',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/495488731_708750095140858_1391036828078671868_n',
+        story: 'Intimate ceremonial rituals and warm familial joy preserved in natural ambient light.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 82,
+        title: 'Solitude in Frame',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/3xgxbxWf/486955380-2462332840781958-8837343577198788488-n.jpg',
+        story: 'Composed with generous breathing room—allowing quiet posture and natural shadows to tell the story.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 83,
+        title: 'Waters of Reflection',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/482977198_2450162491998993_3687714881785621477_n',
+        story: 'Mirror-like surfaces echoing the sky above—a contemplative pause along the water’s edge.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 250'
+      },
+      {
+        id: 84,
+        title: 'Dusk Commute',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/hG73knvP/472670340-2394161537599089-3114519030100702735-n.jpg',
+        story: 'The fading glow of evening settling over Dhaka’s thoroughfares as daily transit slows into twilight.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/320s • f/1.8 • ISO 400'
+      },
+      {
+        id: 85,
+        title: 'Golden Reverie',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/484569942_670611255621409_8946865887419271606_n',
+        story: 'Warm golden tones illuminating intricate bridal attire and quiet grace during the wedding festivities.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 86,
+        title: 'Luminous Union',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/477782492_634043865676697_6819562744249361899_n',
+        story: 'Radiant bridal elegance and festive warmth captured in directional light.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 87,
+        title: 'Timeless Embrace',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/480567347_650979077584627_1314760779394507736_n_1',
+        story: 'Quiet emotional warmth and celebratory grace captured at the close of evening.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 88,
+        title: 'Eternal Grace',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/600192045_886730100676189_304737417200313016_n',
+        story: 'An unhurried moment of serenity and celebration—preserving the timeless spirit of a wedding evening.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 89,
+        title: 'Luminous Promise',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/615398623_909606891721843_2029736201134542282_n',
+        story: 'Soft evening glow framing candid laughter and shared grace—closing the wedding sequence in warmth.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 90,
+        title: 'Stillness in Shadow',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2024)',
+        image: 'https://i.postimg.cc/bwcLx3KT/533546315-2599898650358709-3192074671112840318-n.jpg',
+        story: 'Carved out of deep ambient shade—letting subtle highlights reveal character and quiet emotional depth.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4 • Ambient Shade',
+        exif: '1/320s • f/1.6 • ISO 400'
+      },
+      {
+        id: 91,
+        title: 'Haze & Harmony',
+        genre: 'Concerts',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/486378148_2460355437646365_1687353248793167639_n',
+        story: 'Atmospheric stage smoke diffusing concert spotlights into a luminous, cinematic live-music frame.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/320s • f/1.8 • ISO 800'
+      },
+      {
+        id: 92,
+        title: 'Quiet Devotion',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/482249416_670613798954488_7841040593209238292_n',
+        story: 'Candid emotion and timeless elegance captured in soft directional light amidst the celebration.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/400s • f/1.8 • ISO 320'
+      },
+      {
+        id: 93,
+        title: 'Threads of Dusk',
+        genre: 'Fashion',
+        location: 'Banani, Dhaka',
+        image: 'https://i.postimg.cc/zfnP491x/488644151-2472069803141595-6580750028671014106-n.jpg',
+        story: 'Late-afternoon warmth catching intricate garment details and effortless movement in an outdoor editorial frame.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/640s • f/2.0 • ISO 160'
+      },
+      {
+        id: 94,
+        title: 'Paths Uncharted',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/484331111_2450162345332341_8175337164874501294_n',
+        story: 'Quiet landscapes unfolding mile after mile—grounded in natural color and unscripted discovery.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/500s • f/2.2 • ISO 200'
+      },
+      {
+        id: 95,
+        title: 'Candid Grace I',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/tJZXdXLd/486481511-2461348640880378-7771626216127630168-n.jpg',
+        story: 'Captured in a fleeting pause between moments—natural warmth, soft bokeh, and honest presence.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/500s • f/1.8 • ISO 200'
+      },
+      {
+        id: 96,
+        title: 'Urban Pulse I',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/wMNDQPsY/Southeast-University-Hasan-Mahmud-Fahim-Single-01904299764-03.jpg',
+        story: 'Waiting for the decisive alignment of light and stride along the city pavement.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/800s • f/2.2 • ISO 200'
+      },
+      {
+        id: 97,
+        title: 'Radiant Vows',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/485155335_670611798954688_5378358860349360973_n',
+        story: 'Luminous evening light framing heartfelt celebration and traditional wedding splendor.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 98,
+        title: 'Golden Heritage',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/474895332_624186953329055_7598936194582043081_n',
+        story: 'Timeless bridal artistry and warm evening glow preserved in stillness.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 99,
+        title: 'Candid Grace II',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/pV4VWFF7/486651665-2461348917547017-6334054163178494577-n.jpg',
+        story: 'Companion portrait study exploring subtle shifts in angle, expression, and gentle afternoon light.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/500s • f/1.8 • ISO 200'
+      },
+      {
+        id: 100,
+        title: 'Twilight Over Distant Hills',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/474777009_2409738729374703_7197196551196608547_n',
+        story: 'Fading evening light settling across open vistas—where quiet atmosphere lingers long after sunset.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/320s • f/1.8 • ISO 320'
+      },
+      {
+        id: 101,
+        title: 'Velocity in Stillness',
+        genre: 'Automotive',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/T1SzTgNr/485763162-2456785194670056-3327217096723733343-n.jpg',
+        story: 'Clean profile composition balancing architectural surroundings with sleek automotive lines.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/2.8',
+        exif: '35mm • f/2.8 • 1/500s • ISO 200'
+      },
+      {
+        id: 102,
+        title: 'Stillness in Stride',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/L54D8F9q/yuna.jpg',
+        story: 'An unscripted street frame capturing quiet poise and natural atmosphere inside the everyday flow of the city.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 250'
+      },
+      {
+        id: 103,
+        title: 'Ceremonial Poise',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/481768254_661595576522977_1280170925712611347_n',
+        story: 'Graceful bridal portrait bathed in soft ceremonial light—preserving serenity, heritage, and timeless beauty.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 104,
+        title: 'Echoes of Expression',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2024)',
+        image: 'https://i.postimg.cc/R0vR8qCT/534970179-2599895257025715-1274466724368469167-n.jpg',
+        story: 'Warm golden-hour rim light catching a fleeting expression—honest, unposed, and deeply human.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8 • Golden Hour',
+        exif: '1/500s • f/2.0 • ISO 160'
+      },
+      {
+        id: 105,
+        title: 'Where Roads Meet Sky',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/138197851_1369403613408225_7529678144989471187_n',
+        story: 'An open-road perspective framed by crisp daylight and distant horizons—closing the travel sequence in stillness.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/640s • f/2.5 • ISO 200'
+      },
+      {
+        id: 106,
+        title: 'Ambient Reflection',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/YCftzDyX/486385352-2458749541140288-6425782736183974512-n.jpg',
+        story: 'Soft ambient tones framing an introspective moment—where quiet surroundings amplify human emotion.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 107,
+        title: 'Poised Frame',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2024)',
+        image: 'https://i.postimg.cc/B6VBXgTH/535494215-2599894763692431-4587526985302759103-n.jpg',
+        story: 'Balanced composition in clean open shade, emphasizing posture, calm confidence, and natural skin tones.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4 • Open Shade',
+        exif: '1/400s • f/1.8 • ISO 200'
+      },
+      {
+        id: 108,
+        title: 'Modern Heritage',
+        genre: 'Fashion',
+        location: 'Gulshan, Dhaka',
+        image: 'https://i.postimg.cc/yxWj6G2r/487442768-2466149373733638-1751923622369839119-n.jpg',
+        story: 'Contemporary styling rooted in subtle cultural texture—composed with balanced negative space and natural depth.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/500s • f/2.0 • ISO 200'
+      },
+      {
+        id: 109,
+        title: 'Quiet Contemplation II',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/QMfsR9Dm/486251058-2458177124530863-8173372736602710960-n.jpg',
+        story: 'Natural light falling cleanly across the subject—honoring simplicity, poise, and unforced character.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/400s • f/1.8 • ISO 200'
+      },
+      {
+        id: 110,
+        title: 'Urban Pulse II',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/vBkW9MTr/Southeast-University-Hasan-Mahmud-Fahim-Single-01904299764-04.jpg',
+        story: 'Closing chapter of the sequence—quiet resilience and atmosphere lingering as day fades over the streets.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 500'
+      },
+      {
+        id: 111,
+        title: 'Dusk Stillness',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/nV9WWh4x/639419640-2774765356205370-53389929597454852-n.jpg',
+        story: 'Fading evening light resting gently across the frame—preserving depth, mood, and unspoken story.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/250s • f/2.0 • ISO 400'
+      },
+      {
+        id: 112,
+        title: 'Street Study I',
+        genre: 'Street',
+        location: 'Old Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/tCPz31hQ/DSC2956.jpg',
+        story: 'Candid street observation—textures of daily life, natural contrast, and unscripted emotion framed in motion.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/500s • f/2.8 • ISO 320'
+      },
+      {
+        id: 113,
+        title: 'Embers of Evening',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2025)',
+        image: 'https://i.postimg.cc/G2NRmWH8/485123626-2455621548119754-7298847455010139504-n.jpg',
+        story: 'Warm twilight tones and gentle shadow depth closing the portrait sequence with calm, cinematic stillness.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8',
+        exif: '1/320s • f/2.0 • ISO 320'
+      },
+      {
+        id: 114,
+        title: 'Chiaroscuro Study',
+        genre: 'Portrait',
+        location: 'Dhaka, Bangladesh (2024)',
+        image: 'https://i.postimg.cc/6TsVhp14/535084372-2599894793692428-5666361660224246139-n.jpg',
+        story: 'Sculpted directional light meeting deep shadow—highlighting contrast, texture, and introspective emotion.',
+        camera: 'Sony Mirrorless',
+        lens: '85mm f/1.8 • Directional Light',
+        exif: '1/320s • f/2.0 • ISO 250'
+      },
+      {
+        id: 115,
+        title: 'Chiaroscuro Couture',
+        genre: 'Fashion',
+        location: 'Dhanmondi, Dhaka',
+        image: 'https://i.postimg.cc/J7gccP99/487774416-2469720533376522-1005284586520280270-n.jpg',
+        story: 'High-contrast editorial framing emphasizing sharp tailoring, sculpted highlights, and commanding visual presence.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/400s • f/2.0 • ISO 200'
+      },
+      {
+        id: 116,
+        title: 'Street Study II',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/brSZjtz0/DSC2614-dfdjpg.jpg',
+        story: 'Atmospheric light cutting across the street—holding onto a quiet human moment before it vanishes into the crowd.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/640s • f/2.2 • ISO 250'
+      },
+      {
+        id: 117,
+        title: 'Rhythm of the Crossing',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/Fs9gyvQc/486835607-2461602634188312-3049294612615519604-n.jpg',
+        story: 'Unscripted pedestrian rhythm captured in natural afternoon light along Dhaka’s streets.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/500s • f/2.2 • ISO 250'
+      },
+      {
+        id: 118,
+        title: 'Alleyway Solitude',
+        genre: 'Street',
+        location: 'Old Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/xjPLTZbD/DSC2556.jpg',
+        story: 'Quiet architectural shadows framing a fleeting figure moving through a narrow lane.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 320'
+      },
+      {
+        id: 119,
+        title: 'Passing Shadows',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/fTTm3vxF/DSC2669.jpg',
+        story: 'Directional sunlight carving crisp silhouettes and geometric contrast across the pavement.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/640s • f/2.5 • ISO 200'
+      },
+      {
+        id: 120,
+        title: 'Concrete & Cadence',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/FKcLtCQ2/DSC2980.jpg',
+        story: 'Everyday urban geometry meeting human motion in a candid observational frame.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/500s • f/2.2 • ISO 250'
+      },
+      {
+        id: 121,
+        title: 'Fleeting Glances',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/B601J5SM/DSC2533.jpg',
+        story: 'An unhurried street moment preserved in soft ambient light amidst the pulse of the city.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 320'
+      },
+      {
+        id: 122,
+        title: 'Open Sky Reverie',
+        genre: 'Travel',
+        location: 'Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/90901285_1129441374071118_8577036581871812608_n',
+        story: 'Crisp natural daylight over wide horizons—capturing the quiet freedom of stepping beyond city limits.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/640s • f/2.5 • ISO 160'
+      },
+      {
+        id: 123,
+        title: 'Stage Lights & Resonance',
+        genre: 'Concerts',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/486561989_2460355354313040_2249351302255248896_n',
+        story: 'Electric stage atmosphere and live performance energy framed beneath dramatic concert lighting.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/320s • f/1.8 • ISO 800'
+      },
+      {
+        id: 124,
+        title: 'Morning Transit',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/5tMtzxZZ/DSC2473.jpg',
+        story: 'Early light catching quiet movement and daily routines as the city awakens.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/640s • f/2.0 • ISO 200'
+      },
+      {
+        id: 125,
+        title: 'Crosswalk Reverie',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/hjZg2g5D/DSC3970.jpg',
+        story: 'Stillness carved out of motion—capturing a contemplative moment amidst Dhaka’s urban flow.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/500s • f/2.2 • ISO 250'
+      },
+      {
+        id: 126,
+        title: 'Echoes on Pavement',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/L8FSCxNk/JDO0297-copy.jpg',
+        story: 'Layered light, footsteps, and architectural textures converging along a sunlit street corner.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/640s • f/2.5 • ISO 200'
+      },
+      {
+        id: 127,
+        title: 'Afterglow Alley',
+        genre: 'Street',
+        location: 'Old Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/DyL0wJNd/JDO1091.jpg',
+        story: 'Warm late-afternoon tones lingering against weathered walls and quiet alleyways.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/400s • f/2.0 • ISO 320'
+      },
+      {
+        id: 128,
+        title: 'Twilight Silhouettes',
+        genre: 'Street',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://i.postimg.cc/sgKVMp45/472508879-2394161084265801-914468568348913105-n.jpg',
+        story: 'Fading dusk light sculpting shadows and human silhouettes at the close of day.',
+        camera: 'Sony Mirrorless',
+        lens: '35mm f/1.8',
+        exif: '1/320s • f/1.8 • ISO 400'
+      },
+      {
+        id: 129,
+        title: 'Apex Reflections',
+        genre: 'Automotive',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/189999248_1459962787685640_7153266727442170568_n',
+        story: 'Sculptural automotive curves and clean ambient reflections closing the automotive study.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.8',
+        exif: '1/400s • f/2.2 • ISO 250'
+      },
+      {
+        id: 130,
+        title: 'Vows at Dusk',
+        genre: 'Wedding',
+        location: 'Dhaka, Bangladesh',
+        image: 'https://res.cloudinary.com/bpz8u8mh/image/upload/f_auto,q_auto/472668729_609659421448475_8062410302401607182_n',
+        story: 'Soft twilight reflections and joyful connection closing the wedding sequence in warmth.',
+        camera: 'Sony Mirrorless',
+        lens: '50mm f/1.4',
+        exif: '1/320s • f/1.8 • ISO 320'
+      }
+    ];
+
+    const visualSeries = [
+      {
+        id: 'monsoon-diaries',
+        tag: 'Photo Essay • Street & Atmosphere',
+        title: 'The Storm Within & Beyond',
+        subtitle: 'Dhaka Streets • 2024–2025',
+        cover: 'https://i.postimg.cc/DyVrw2tz/The-storm-of-inside-Section-1-Hasan-Mahmud-Fahim-Regular-21201045-8801904299764-1-%28Regular-St.jpg',
+        fallbackCover: 'https://i.postimg.cc/DyVrw2tz/The-storm-of-inside-Section-1-Hasan-Mahmud-Fahim-Regular-21201045-8801904299764-1-(Regular-St.jpg',
+        summary: 'An intimate chronicle of overcast skies, solitude, and quiet resilience along Dhaka’s streets.',
+        body: 'Shot across shifting weather and afternoon shadows in Dhaka, this series traces how light transforms the visual tempo of the city—finding stillness and internal emotion inside everyday urban motion.'
+      },
+      {
+        id: 'urban-pulse-essay',
+        tag: 'Street Monograph • Observational Series',
+        title: 'Chiaroscuro Streets',
+        subtitle: 'Observational Study • Dhaka',
+        cover: 'https://i.postimg.cc/0N5d1ch2/Southeast-University-Hasan-Mahmud-Fahim-Single-01904299764-01.jpg',
+        summary: 'Geometric shadows, architectural lines, and fleeting human encounters captured in natural light.',
+        body: 'In a bustling city of twenty million voices, solitude often hides in plain sight—beneath concrete walkways, beside sunlit walls, and in the brief pause between footsteps. These frames celebrate unscripted choreography and natural contrast.'
+      },
+      {
+        id: 'nocturne-machines-editorial',
+        tag: 'Editorial & Automotive Study',
+        title: 'Chrome, Silhouette & Dusk',
+        subtitle: 'Fashion & Automotive Visual Series • Dhaka',
+        cover: 'https://i.postimg.cc/s2d3Ydc6/520693394-2575305566151351-5027772409519108907-n.jpg',
+        summary: 'A visual pairing of sculptural automotive lines and evening editorial silhouettes shaped by twilight reflections.',
+        body: 'Exploring the dialogue between sculpted metal, tailored drape, and fading dusk light—capturing precision lines, rich textures, and quiet nocturnal atmosphere across Dhaka.'
+      }
+    ];
+
+    // -----------------------------------------------------------------------
+    // 2. IMAGE FALLBACK HANDLER (NO BROKEN IMAGES)
+    // -----------------------------------------------------------------------
+    function handleImageFallback(imgEl) {
+      if (!imgEl || imgEl.dataset.fallbackApplied === 'true') return;
+      imgEl.dataset.fallbackApplied = 'true';
+
+      const customFallback = imgEl.getAttribute('data-fallback');
+      if (customFallback) {
+        imgEl.src = customFallback;
+        return;
+      }
+
+      const rawTitle = imgEl.getAttribute('data-title') || imgEl.alt || 'Hasan Mahmud Archive';
+      const encodedTitle = encodeURIComponent(rawTitle.slice(0, 36));
+      imgEl.src = `https://placehold.co/800x1000/111115/fde68a?text=${encodedTitle}`;
+    }
+
+    // -----------------------------------------------------------------------
+    // 3. SPECTRUM AURA TOGGLE & LIVE DHAKA CLOCK
+    // -----------------------------------------------------------------------
+    let isAuraOn = true;
+    const auraToggleBtn = document.getElementById('auraToggleBtn');
+    const auraToggleLabel = document.getElementById('auraToggleLabel');
+    const auraDot = document.getElementById('auraDot');
+
+    function applyAuraState() {
+      const root = document.documentElement;
+      if (isAuraOn) {
+        root.classList.add('aura-on');
+        root.classList.remove('aura-off');
+        if (auraToggleBtn) {
+          auraToggleBtn.setAttribute('aria-pressed', 'true');
+          auraToggleBtn.classList.add('aura-is-on');
+          auraToggleBtn.classList.remove('aura-is-off');
+        }
+        if (auraToggleLabel) auraToggleLabel.textContent = 'Aura: On';
+        if (auraDot) auraDot.classList.remove('opacity-40');
+      } else {
+        root.classList.add('aura-off');
+        root.classList.remove('aura-on');
+        if (auraToggleBtn) {
+          auraToggleBtn.setAttribute('aria-pressed', 'false');
+          auraToggleBtn.classList.remove('aura-is-on');
+          auraToggleBtn.classList.add('aura-is-off');
+        }
+        if (auraToggleLabel) auraToggleLabel.textContent = 'Aura: Off';
+        if (auraDot) auraDot.classList.add('opacity-40');
+      }
+    }
+
+    if (auraToggleBtn) {
+      auraToggleBtn.addEventListener('click', () => {
+        isAuraOn = !isAuraOn;
+        applyAuraState();
+      });
+    }
+
+    function updateDhakaClock() {
+      const clockEl = document.getElementById('dhakaClock');
+      if (!clockEl) return;
+      try {
+        const now = new Date();
+        const formatter = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Asia/Dhaka',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        });
+        clockEl.textContent = formatter.format(now).toUpperCase() + ' BST';
+      } catch (e) {
+        clockEl.textContent = new Date().toLocaleTimeString();
+      }
+    }
+
+    // -----------------------------------------------------------------------
+    // 4. SCROLL-REACTIVE HERO GLOW
+    // -----------------------------------------------------------------------
+    function updateScrollGlow() {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const clamped = Math.min(scrollY, 700);
+      const shift = (clamped * 0.18).toFixed(1) + 'px';
+      const scale = (1 + clamped / 2600).toFixed(3);
+      document.documentElement.style.setProperty('--scroll-glow-shift', shift);
+      document.documentElement.style.setProperty('--scroll-glow-scale', scale);
+    }
+
+    window.addEventListener('scroll', updateScrollGlow, { passive: true });
+
+    // -----------------------------------------------------------------------
+    // 5. MOBILE MENU TOGGLE
+    // -----------------------------------------------------------------------
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', String(isHidden));
+      });
+
+      document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // -----------------------------------------------------------------------
+    // 6. GALLERY FILTER TABS & MASONRY RENDERING
+    // -----------------------------------------------------------------------
+    function renderFilterTabs() {
+      const filterTabs = document.getElementById('filterTabs');
+      if (!filterTabs) return;
+
+      filterTabs.innerHTML = categories
+        .map((cat) => {
+          const isActive = cat === activeCategory;
+          const filterSlug = cat === 'All Colors' ? 'all' : cat.toLowerCase();
+          return `
+            <button
+              type="button"
+              role="tab"
+              aria-selected="${isActive}"
+              data-category="${cat}"
+              data-filter="${filterSlug}"
+              class="filter-tab-btn px-4 py-2 rounded-full text-xs font-medium tracking-wider uppercase transition-all cursor-pointer ${
+                isActive
+                  ? 'bg-zinc-100 text-obsidian shadow-[0_0_20px_rgba(255,255,255,0.16)]'
+                  : 'border border-white/10 bg-white/[0.03] text-zinc-300 hover:bg-white/10 hover:text-white'
+              }"
+            >
+              ${cat}
+            </button>
+          `;
+        })
+        .join('');
+
+      filterTabs.querySelectorAll('.filter-tab-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeCategory = btn.getAttribute('data-category');
+          renderFilterTabs();
+          renderGallery();
+        });
+      });
+    }
+
+    function renderGallery() {
+      const galleryEl = document.getElementById('masonryGallery');
+      const frameCountEl = document.getElementById('frameCount');
+      const heroCountEl = document.getElementById('heroArchiveCount');
+      if (!galleryEl) return;
+
+      currentFilteredWorks =
+        activeCategory === 'All Colors'
+          ? [...portfolioWorks]
+          : portfolioWorks.filter((work) => work.genre === activeCategory);
+
+      if (frameCountEl) {
+        const total = currentFilteredWorks.length;
+        frameCountEl.textContent = `Showing ${total} ${total === 1 ? 'work' : 'works'}`;
+      }
+
+      if (heroCountEl) {
+        heroCountEl.textContent = `${portfolioWorks.length} Plates • 200+ Events`;
+      }
+
+      // Subtle alternating editorial scale & vertical rhythm while keeping images isolated
+      const rhythmClasses = [
+        'w-full',
+        'w-[96%] mx-auto lg:mt-5',
+        'w-full',
+        'w-[97%] mx-auto',
+        'w-full lg:mt-6',
+        'w-[95%] mx-auto'
+      ];
+
+      galleryEl.innerHTML = currentFilteredWorks
+        .map((work, idx) => {
+          const rhythm = rhythmClasses[idx % rhythmClasses.length];
+          const loadMode = idx < 8 ? 'eager' : 'lazy';
+          const safeTitle = work.title.replace(/"/g, '&quot;');
+          const safeGenre = work.genre.replace(/"/g, '&quot;');
+          const fallbackDataAttr = work.fallbackImage
+            ? `data-fallback="${work.fallbackImage.replace(/"/g, '&quot;')}"`
+            : '';
+
+          return `
+            <article
+              data-index="${idx}"
+              tabindex="0"
+              role="button"
+              aria-label="Inspect ${safeTitle} in full screen"
+              class="masonry-item ${rhythm} group rounded-2xl border border-white/10 p-2.5 sm:p-3 shadow-[0_18px_45px_rgba(0,0,0,0.65)] hover:border-white/25 transition-all duration-500 cursor-pointer focus:outline-none focus:ring-2 focus:ring-amber-300/60"
+            >
+              <div class="relative overflow-hidden rounded-xl bg-obsidian">
+                <img
+                  src="${work.image}"
+                  alt="${safeTitle} — ${safeGenre} by Hasan Mahmud"
+                  loading="${loadMode}"
+                  referrerpolicy="no-referrer"
+                  data-title="${safeTitle}"
+                  ${fallbackDataAttr}
+                  onerror="handleImageFallback(this)"
+                  class="w-full h-auto block object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                />
+                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-obsidian/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-obsidian/80 backdrop-blur-md border border-white/10 text-[10px] uppercase tracking-[0.18em] text-zinc-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  Inspect
+                </span>
+              </div>
+
+              <!-- Minimal Exhibition Plate -->
+              <div class="pt-3.5 px-1 pb-1 flex items-baseline justify-between gap-3">
+                <div>
+                  <h3 class="font-serif text-lg sm:text-xl font-medium text-zinc-100 group-hover:text-white transition-colors">
+                    ${work.title}
+                  </h3>
+                  <p class="text-[11px] text-zinc-400 mt-0.5">${work.location}</p>
+                </div>
+                <span class="shrink-0 text-[10px] uppercase tracking-[0.2em] text-zinc-400 border border-white/10 rounded-full px-2.5 py-0.5">
+                  ${work.genre}
+                </span>
+              </div>
+            </article>
+          `;
+        })
+        .join('');
+
+      galleryEl.querySelectorAll('.masonry-item').forEach((card) => {
+        const openCard = () => {
+          const idx = Number(card.getAttribute('data-index'));
+          openLightbox(idx);
+        };
+        card.addEventListener('click', openCard);
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openCard();
+          }
+        });
+      });
+    }
+
+    // -----------------------------------------------------------------------
+    // 7. VISUAL SERIES & MONOGRAPH ESSAYS RENDERING & MODAL
+    // -----------------------------------------------------------------------
+    const seriesModal = document.getElementById('seriesModal');
+    const seriesModalClose = document.getElementById('seriesModalClose');
+
+    function openSeriesModal(index) {
+      const item = visualSeries[index];
+      if (!item || !seriesModal) return;
+
+      const coverEl = document.getElementById('seriesModalCover');
+      const tagEl = document.getElementById('seriesModalTag');
+      const titleEl = document.getElementById('seriesModalTitle');
+      const subtitleEl = document.getElementById('seriesModalSubtitle');
+      const bodyEl = document.getElementById('seriesModalBody');
+
+      if (coverEl) {
+        coverEl.dataset.fallbackApplied = 'false';
+        coverEl.setAttribute('data-title', item.title);
+        if (item.fallbackCover) {
+          coverEl.setAttribute('data-fallback', item.fallbackCover);
+        } else {
+          coverEl.removeAttribute('data-fallback');
+        }
+        coverEl.src = item.cover;
+        coverEl.alt = item.title;
+      }
+      if (tagEl) tagEl.textContent = item.tag;
+      if (titleEl) titleEl.textContent = item.title;
+      if (subtitleEl) subtitleEl.textContent = item.subtitle;
+      if (bodyEl) bodyEl.textContent = item.body;
+
+      seriesModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSeriesModal() {
+      if (!seriesModal) return;
+      seriesModal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    if (seriesModalClose) {
+      seriesModalClose.addEventListener('click', closeSeriesModal);
+    }
+
+    if (seriesModal) {
+      seriesModal.addEventListener('click', (e) => {
+        if (e.target === seriesModal) closeSeriesModal();
+      });
+    }
+
+    function renderSeries() {
+      const seriesGrid = document.getElementById('seriesGrid');
+      if (!seriesGrid) return;
+
+      seriesGrid.innerHTML = visualSeries
+        .map((series, idx) => {
+          const safeTitle = series.title.replace(/"/g, '&quot;');
+          const fallbackDataAttr = series.fallbackCover
+            ? `data-fallback="${series.fallbackCover.replace(/"/g, '&quot;')}"`
+            : '';
+          return `
+            <article
+              data-series-index="${idx}"
+              tabindex="0"
+              role="button"
+              aria-label="Read essay: ${safeTitle}"
+              class="series-card group rounded-2xl bg-obsidian/90 border border-white/10 overflow-hidden hover:border-white/25 transition-all duration-500 flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-sky-300/60"
+            >
+              <div>
+                <div class="relative aspect-[16/10] w-full overflow-hidden bg-charcoal protected-artwork">
+                  <img
+                    src="${series.cover}"
+                    alt="${safeTitle}"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                    data-title="${safeTitle}"
+                    ${fallbackDataAttr}
+                    onerror="handleImageFallback(this)"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/20 to-transparent"></div>
+                  <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-obsidian/80 backdrop-blur-md border border-white/10 text-[10px] uppercase tracking-[0.2em] text-amber-200">
+                    ${series.tag}
+                  </span>
+                </div>
+
+                <div class="p-6">
+                  <h3 class="font-serif text-2xl font-semibold text-zinc-100 group-hover:text-white transition-colors">
+                    ${series.title}
+                  </h3>
+                  <p class="mt-1 text-[11px] uppercase tracking-[0.16em] text-zinc-400">
+                    ${series.subtitle}
+                  </p>
+                  <p class="mt-3.5 text-sm text-zinc-300/90 font-light leading-relaxed">
+                    ${series.summary}
+                  </p>
+                </div>
+              </div>
+
+              <div class="px-6 pb-6 pt-2 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-sky-300 group-hover:text-sky-200">
+                <span>Read Monograph</span>
+                <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </div>
+            </article>
+          `;
+        })
+        .join('');
+
+      seriesGrid.querySelectorAll('.series-card').forEach((card) => {
+        const trigger = () => {
+          const idx = Number(card.getAttribute('data-series-index'));
+          openSeriesModal(idx);
+        };
+        card.addEventListener('click', trigger);
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            trigger();
+          }
+        });
+      });
+    }
+
+    // -----------------------------------------------------------------------
+    // 8. FULL-SCREEN LIGHTBOX INSPECTOR
+    // -----------------------------------------------------------------------
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+
+    function populateLightbox(index) {
+      if (!currentFilteredWorks.length) return;
+      currentLightboxIndex = (index + currentFilteredWorks.length) % currentFilteredWorks.length;
+      const work = currentFilteredWorks[currentLightboxIndex];
+
+      const imgEl = document.getElementById('lightboxImg');
+      const genreEl = document.getElementById('lightboxGenre');
+      const titleEl = document.getElementById('lightboxTitle');
+      const locEl = document.getElementById('lightboxLocation');
+      const storyEl = document.getElementById('lightboxStory');
+      const camEl = document.getElementById('lightboxCamera');
+      const lensEl = document.getElementById('lightboxLens');
+      const exifEl = document.getElementById('lightboxExif');
+
+      if (imgEl) {
+        imgEl.dataset.fallbackApplied = 'false';
+        imgEl.setAttribute('data-title', work.title);
+        if (work.fallbackImage) {
+          imgEl.setAttribute('data-fallback', work.fallbackImage);
+        } else {
+          imgEl.removeAttribute('data-fallback');
+        }
+        imgEl.src = work.image;
+        imgEl.alt = `${work.title} — ${work.genre}`;
+      }
+      if (genreEl) genreEl.textContent = work.genre;
+      if (titleEl) titleEl.textContent = work.title;
+      if (locEl) locEl.textContent = work.location;
+      if (storyEl) storyEl.textContent = work.story;
+      if (camEl) camEl.textContent = work.camera;
+      if (lensEl) lensEl.textContent = work.lens;
+      if (exifEl) exifEl.textContent = work.exif;
+    }
+
+    function openLightbox(index) {
+      if (!lightboxModal) return;
+      populateLightbox(index);
+      lightboxModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      if (!lightboxModal) return;
+      lightboxModal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function showPrevWork() {
+      populateLightbox(currentLightboxIndex - 1);
+    }
+
+    function showNextWork() {
+      populateLightbox(currentLightboxIndex + 1);
+    }
+
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if (lightboxPrev) {
+      lightboxPrev.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showPrevWork();
+      });
+    }
+    if (lightboxNext) {
+      lightboxNext.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showNextWork();
+      });
+    }
+    if (lightboxModal) {
+      lightboxModal.addEventListener('click', (e) => {
+        if (e.target === lightboxModal) closeLightbox();
+      });
+    }
+
+    // Keyboard navigation for Lightbox & Modals
+    document.addEventListener('keydown', (e) => {
+      if (lightboxModal && !lightboxModal.classList.contains('hidden')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showPrevWork();
+        if (e.key === 'ArrowRight') showNextWork();
+      } else if (seriesModal && !seriesModal.classList.contains('hidden')) {
+        if (e.key === 'Escape') closeSeriesModal();
+      }
+    });
+
+    // -----------------------------------------------------------------------
+    // 9. COPY EMAIL & ARTWORK CONTEXT-MENU PROTECTION
+    // -----------------------------------------------------------------------
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    const copyFeedback = document.getElementById('copyFeedback');
+
+    if (copyEmailBtn) {
+      copyEmailBtn.addEventListener('click', () => {
+        const tempInput = document.createElement('input');
+        tempInput.value = 'fahimf337@gmail.com';
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+          document.execCommand('copy');
+          if (copyFeedback) {
+            copyFeedback.classList.remove('opacity-0');
+            setTimeout(() => copyFeedback.classList.add('opacity-0'), 2600);
+          }
+        } catch (err) {
+          // Silent fallback if clipboard restricted
+        }
+        document.body.removeChild(tempInput);
+      });
+    }
+
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.closest('.protected-artwork')) {
+        e.preventDefault();
+      }
+    });
+
+    // -----------------------------------------------------------------------
+    // 10. CONTINUOUS LOOPING SOUNDTRACK ENGINE
+    // -----------------------------------------------------------------------
+    const SOUNDTRACK_URL = 'https://res.cloudinary.com/bpz8u8mh/video/upload/v1795126496/Jim_Croce_-_Time_In_A_Bottle_-_Instrumental.mp3';
+    const TARGET_VOLUME = 0.5;
+
+    const siteSoundtrack = document.getElementById('siteSoundtrack');
+    let isSoundEnabled = true;
+    let awaitingAutoplayUnlock = false;
+    let fadeRafId = null;
+
+    if (siteSoundtrack) {
+      siteSoundtrack.src = SOUNDTRACK_URL;
+      siteSoundtrack.loop = true;
+      siteSoundtrack.preload = 'auto';
+      siteSoundtrack.volume = TARGET_VOLUME;
+
+      // Seamless loop fallback if any browser fails native loop attribute
+      siteSoundtrack.addEventListener('ended', () => {
+        if (!isSoundEnabled) return;
+        siteSoundtrack.currentTime = 0;
+        const replayPromise = siteSoundtrack.play();
+        if (replayPromise && typeof replayPromise.catch === 'function') {
+          replayPromise.catch(() => {});
+        }
+      });
+    }
+
+    const soundToggleBtn = document.getElementById('soundToggleBtn');
+    const soundToggleLabel = document.getElementById('soundToggleLabel');
+    const soundIconOff = document.getElementById('soundIconOff');
+    const soundIconOn = document.getElementById('soundIconOn');
+
+    function updateSoundButtonUI(state, customLabel) {
+      if (!soundToggleBtn || !soundToggleLabel) return;
+
+      if (state === 'on') {
+        soundToggleBtn.setAttribute('aria-pressed', 'true');
+        soundToggleBtn.classList.add('sound-is-on');
+        soundToggleBtn.classList.remove('sound-is-off');
+        soundToggleLabel.textContent = customLabel || 'Sound On';
+        if (soundIconOff) soundIconOff.classList.add('hidden');
+        if (soundIconOn) soundIconOn.classList.remove('hidden');
+      } else {
+        soundToggleBtn.setAttribute('aria-pressed', 'false');
+        soundToggleBtn.classList.remove('sound-is-on');
+        soundToggleBtn.classList.add('sound-is-off');
+        soundToggleLabel.textContent = customLabel || 'Sound Off';
+        if (soundIconOff) soundIconOff.classList.remove('hidden');
+        if (soundIconOn) soundIconOn.classList.add('hidden');
+      }
+    }
+
+    function applySoundToggleState() {
+      updateSoundButtonUI(isSoundEnabled ? 'on' : 'off');
+    }
+
+    function cancelVolumeFade() {
+      if (fadeRafId !== null) {
+        cancelAnimationFrame(fadeRafId);
+        fadeRafId = null;
+      }
+    }
+
+    function fadeVolumeTo(targetVol, durationMs, onComplete) {
+      if (!siteSoundtrack) return;
+      cancelVolumeFade();
+      const startVol = siteSoundtrack.volume;
+      const startTime = performance.now();
+
+      function step(now) {
+        const progress = Math.min((now - startTime) / durationMs, 1);
+        const eased = progress * (2 - progress);
+        siteSoundtrack.volume = Math.max(0, Math.min(1, startVol + (targetVol - startVol) * eased));
+
+        if (progress < 1) {
+          fadeRafId = requestAnimationFrame(step);
+        } else {
+          fadeRafId = null;
+          if (typeof onComplete === 'function') onComplete();
+        }
+      }
+
+      fadeRafId = requestAnimationFrame(step);
+    }
+
+    function removeAutoplayUnlockListeners() {
+      ['click', 'pointerdown', 'keydown', 'touchstart'].forEach((evt) => {
+        document.removeEventListener(evt, handleFirstInteractionUnlock);
+      });
+    }
+
+    function handleFirstInteractionUnlock(e) {
+      if (e && e.target && soundToggleBtn && soundToggleBtn.contains(e.target)) {
+        removeAutoplayUnlockListeners();
+        return;
+      }
+      if (!isSoundEnabled || !siteSoundtrack) {
+        removeAutoplayUnlockListeners();
+        return;
+      }
+      if (siteSoundtrack.paused) {
+        siteSoundtrack.loop = true;
+        siteSoundtrack.volume = TARGET_VOLUME;
+        const p = siteSoundtrack.play();
+        if (p && typeof p.then === 'function') {
+          p.then(() => {
+            awaitingAutoplayUnlock = false;
+            updateSoundButtonUI('on', 'Sound On');
+            removeAutoplayUnlockListeners();
+          }).catch(() => {});
+        }
+      } else {
+        awaitingAutoplayUnlock = false;
+        removeAutoplayUnlockListeners();
+      }
+    }
+
+    function registerAutoplayUnlockListeners() {
+      ['click', 'pointerdown', 'keydown', 'touchstart'].forEach((evt) => {
+        document.addEventListener(evt, handleFirstInteractionUnlock, { passive: true });
+      });
+    }
+
+    function startSoundtrackLoop(useFadeIn = false) {
+      if (!siteSoundtrack || !isSoundEnabled) return;
+
+      siteSoundtrack.loop = true;
+      updateSoundButtonUI('on', 'Sound On');
+
+      if (!siteSoundtrack.paused) {
+        awaitingAutoplayUnlock = false;
+        return;
+      }
+
+      if (useFadeIn) {
+        siteSoundtrack.volume = 0;
+      } else {
+        siteSoundtrack.volume = TARGET_VOLUME;
+      }
+
+      const playPromise = siteSoundtrack.play();
+      if (playPromise && typeof playPromise.then === 'function') {
+        playPromise
+          .then(() => {
+            if (!isSoundEnabled) {
+              siteSoundtrack.pause();
+              return;
+            }
+            awaitingAutoplayUnlock = false;
+            removeAutoplayUnlockListeners();
+            updateSoundButtonUI('on', 'Sound On');
+            if (useFadeIn) {
+              fadeVolumeTo(TARGET_VOLUME, 600);
+            }
+          })
+          .catch(() => {
+            awaitingAutoplayUnlock = true;
+            registerAutoplayUnlockListeners();
+          });
+      }
+    }
+
+    function stopSoundtrackLoop() {
+      if (!siteSoundtrack) return;
+      awaitingAutoplayUnlock = false;
+      removeAutoplayUnlockListeners();
+      updateSoundButtonUI('off', 'Sound Off');
+      fadeVolumeTo(0, 400, () => {
+        if (!isSoundEnabled) {
+          siteSoundtrack.pause();
+        }
+      });
+    }
+
+    if (soundToggleBtn) {
+      soundToggleBtn.addEventListener('click', () => {
+        if (!isSoundEnabled || awaitingAutoplayUnlock) {
+          isSoundEnabled = true;
+          startSoundtrackLoop(true);
+        } else {
+          isSoundEnabled = false;
+          stopSoundtrackLoop();
+        }
+      });
+    }
+
+    // -----------------------------------------------------------------------
+    // 11. INITIALIZE PORTFOLIO
+    // -----------------------------------------------------------------------
+    function initPortfolio() {
+      const yearEl = document.getElementById('currentYear');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+      applyAuraState();
+      applySoundToggleState();
+      startSoundtrackLoop(false);
+      renderFilterTabs();
+      renderGallery();
+      renderSeries();
+      updateDhakaClock();
+      updateScrollGlow();
+    }
+
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', () => {
+        initPortfolio();
+        setInterval(updateDhakaClock, 1000);
+      });
+    } else {
+      initPortfolio();
+      setInterval(updateDhakaClock, 1000);
+    }
+  </script>
+</body>
+</html>
